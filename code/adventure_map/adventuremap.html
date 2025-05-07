@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fishbone - Adventure Map</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../main.css">
+    <link rel="stylesheet" href="adventuremap.css">
+    <!-- Vis.js library for network visualization -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" />
+</head>
+<body>
+    <div id="mobile">
+        <div id="header">
+            <h2>Habit Adventure Map</h2>
+        </div>
+        
+        <div class="container">
+            <div class="top-section-wrapper">
+                <div class="map-info">
+                    <p class="streak-info">Current Streak: 0 days</p>
+                    <div class="progress-container">
+                        <div class="progress-bar-wrapper">
+                            <div class="progress-bar"></div>
+                            <p class="progress-text">Current Map Progress</p>
+                        </div>
+                        <span class="percentage">4%</span>
+                    </div>
+                </div>
+                <div class="new-map-button">
+                    <div class="plus-icon">+</div>
+                    <span>New Map</span>
+                </div>
+            </div>
+
+            <div class="map-legend">
+                <p class="legend-title">Map Legend:</p>
+                <div class="legend-items">
+                    <div class="legend-item">
+                        <div class="legend-circle standard-circle"></div>
+                        <span>Standard</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-circle challenge-circle"></div>
+                        <span>Challenge</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-circle rest-circle"></div>
+                        <span>Rest</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-circle event-circle"></div>
+                        <span>Event</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-circle boss-circle"></div>
+                        <span>Boss</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="map-container">
+                <!-- Network visualization container -->
+                <div id="map-network"></div>
+                
+                <p class="current-node-text">Current Node - <span id="selected-node">Boss</span></p>
+            </div>
+        </div>
+        
+        <script src="../elements/navbar.js"></script>
+        <custom-navbar></custom-navbar>
+    </div>
+    
+    <script src="adventuremap.js"></script>
+</body>
+</html>

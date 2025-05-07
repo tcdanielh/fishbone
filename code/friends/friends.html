@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Add friends</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" type="text/css" href="friends.css" />
+    <link rel="stylesheet" href="../main.css">
+</head>
+
+<body>
+    <div id="mobile">
+        <div id="header">
+            <img src="../img/skeleton-profile-green.png" alt="your profile" style="height: 50px; width: 50px;">
+            <h2>Ann Basil</h2>
+        </div>
+
+        <script>
+            // Get the saved image src from localStorage
+            const savedImageSrc = localStorage.getItem('selectedProfile');
+        
+            // If a saved image exists, update the profile image
+            if (savedImageSrc) {
+                const profileImage = document.querySelector('#header img');
+                profileImage.src = savedImageSrc;
+            }
+        </script>
+
+        <hr>
+
+        <div id="friend-box">
+            <div class="column" id="column-1">
+                <div class="container" id="top-friends">
+                    <h2>Your top friends</h2>
+                    
+                        <div class="friend-card">
+                            <a href="vibha-profile.html">
+                                <p>1</p>
+                                <img src="../img/fish-profile-green.png" alt="profile pic">
+                                <p>Vibha</p>
+                                <img src="../img/star-badge.png" alt="star symbol" id="star">
+                                <p>34</p>
+                            </a>
+                        </div>
+                    
+
+                    <div class="friend-card">
+                        <a href="angela-profile.html">
+                            <p>2</p>
+                            <img src="../img/shark-profile-red.png" alt="profile pic">
+                            <p>Angela</p>
+                            <img src="../img/star-badge.png" alt="star symbol" id="star">
+                            <p>75</p>
+                        </a>
+                    </div>
+
+                    <div class="friend-card">
+                        <a href="daniel-profile.html">
+                            <p>3</p>
+                            <img src="../img/fish-profile-purple.png" alt="profile pic">
+                            <p>Daniel</p>
+                            <img src="../img/star-badge.png" alt="star symbol" id="star">
+                            <p>42</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column" id="column-2">
+                <h2 style="text-align: center;">All friends</h2>
+                <div class="container" id="all-friends">
+                    <div class="friend-info">
+                        <a href="katyperry-profile.html">
+                            <img src="../img/skeleton-profile-yellow.png" alt="katy perry">
+                        </a>
+                        <p>Katy Perry</p>
+                    </div>
+                    <div class="friend-info">
+                        <a href="jessi-j-profile.html">
+                            <img src="../img/fish-profile-green.png" alt="jessi j">
+                        </a>
+                        <p>Jessi J</p>
+                    </div>
+                    <div class="friend-info">
+                        <a href="brunomars-profile.html">
+                            <img src="../img/skeleton-profile-green.png" alt="bruno mars">
+                        </a>
+                        <p>Bruno Mars</p>
+                    </div>
+                    <div class="friend-info">
+                        <a href="mileycyrus-profile.html">
+                            <img src="../img/shark-profile-red.png" alt="miley cyrus">
+                        </a>
+                        <p>Miley Cyrus</p>
+                    </div>
+                    <div class="friend-info">
+                        <a href="ladygaga-profile.html">
+                            <img src="../img/shark-profile-black.png" alt="lady gaga">
+                        </a>
+                        <p>Lady Gaga</p>
+                    </div>
+                    <div class="friend-info">
+                        <a href="charli-xcx-profile.html">
+                            <img src="../img/fish-profile-purple.png" alt="charli xcx">
+                        </a>
+                        <p>Charli XCX</p>
+                    </div>
+                    <div class="friend-info">
+                        <a href="troyesivan-profile.html">
+                            <img src="../img/fish-profile-suit.png" alt="troye sivan">
+                        </a>
+                        <p>Troye Sivan</p>
+                    </div>
+                </div>
+                <div class="search-container" style="width: 320px; text-align: center; margin-top: 30px; position: relative; display: inline-block;">
+                    <input type="text" id="friend-search" placeholder="Search friends..." style="width: 80%; padding: 10px 40px 10px 20px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px;">
+                    <span class="search-icon" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+                        🔍
+                    </span>
+                </div>
+                
+            </div>
+        </div>
+        <script src="../elements/navbar.js"></script>
+        <custom-navbar></custom-navbar>
+    </div>
+</body>
+</html>

@@ -1,0 +1,156 @@
+body {
+  font-family: "Figtree", sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  height: 100vh; /* Full viewport height */
+  text-align: center; /* Center text inside elements */
+  background-color: #f0f0f0; /* Optional: Light background */
+}
+
+header {
+  text-align: center; /* Ensures the heading is centered */
+  margin-bottom: 20px; /* Adds space between the title and the tasks */
+}
+
+.container {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center horizontally */
+  gap: 10px; /* Adds spacing between items */
+}
+
+.task {
+  display: block;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background-color: #f0f0f0;
+  border: 3px solid white;
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+  width: 250px; /* Set a fixed width */
+  text-align: center; /* Ensures text inside the button is centered */
+}
+
+.task:hover {
+  background-color: white;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center; 
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  background-color: #478BE3;
+}
+
+.btn:hover {
+  background-color: #f0f0f0;
+  color: #478BE3;
+  border-color: #478BE3;
+  border-width: 2px;
+  border-style: solid;
+}
+
+.action-button:hover {
+  opacity: 0.8;
+}
+
+#mobile {
+  background-color: #1a1c1f;
+  width: 400px;
+  height: 100%;
+  align-items: center;
+  position: relative;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+custom-navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+
+#navbar {
+  position: fixed; 
+  bottom: 0;
+  /* width: 400px; */
+  width: 100%;
+  /* width: calc(100% - 40px);  */
+  background-color: #1a1c1f;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid #1a1c1f;
+  padding: 20px 0;
+  box-sizing: border-box;
+  z-index: 1000;
+}
+
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Figtree', sans-serif;
+    font-size: 12px;
+    color: #ccc;
+}
+
+.nav-icon {
+    width: 50px;
+    height: 50px;
+}
+
+
+.nav-item p {
+    margin: 0;
+}
+
+#mobile {
+  overflow: auto;
+}
+
+/* From ChatGPT */
+/* For Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+  height: 8px; /* Height of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the thumb (the part you drag) */
+  border-radius: 10px; /* Rounded corners for the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Darker color on hover */
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1c1f; /* Color of the track (background area) */
+  border-radius: 10px; /* Rounded corners for the track */
+}
+
+::-webkit-scrollbar-track:hover {
+  background: #1a1c1f; /* Darker track on hover */
+}

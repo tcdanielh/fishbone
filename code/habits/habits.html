@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Habits</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" type="text/css" href="habits.css" />
+    <link rel="stylesheet" href="../main.css">
+    
+    
+</head>
+
+<body>
+    <div id="mobile">
+        <header>
+            <h1>Add/Edit Habits</h1>    
+        </header>
+
+        <main>
+            <h2> Current Habits</h2> 
+
+            <div class="habit-selection">
+              <button class="button" id="Add"> Add Habit </button>
+
+              <button class="button" id="popup-btn">Habit Suggestions!</button><br>
+            </div>
+            <br><br>
+
+            <div id="popup" class="popup">
+              <div class="popup-content">
+                <span id="close">&times;</span>
+                <h3>What types of habits are you in the mood for? </h3>
+                <h3>We'll fish around for a habit!</h3><br>
+                <input type="text" id="userInput" placeholder="Type here..." /><br><br>
+                <button class="button" id="popup-submit">Submit!</button>
+              </div>
+            </div>
+            
+            
+            
+            <div class = "curr-habits"></div>
+
+            <br>
+            <button class="button" id="DemoDone">Demo Done!</button>
+        </main>
+
+
+
+        <script>
+          document.getElementById('Add').addEventListener('click', function() {
+            location.assign("addhabits.html");
+          });
+          
+          document.getElementById('popup-btn').addEventListener('click', function() {
+            document.getElementById('popup').style.display = "flex";
+          });
+
+          document.getElementById('close').addEventListener('click',  function() {
+            document.getElementById('popup').style.display = "none";
+          });
+
+          document.getElementById('popup-submit').addEventListener('click', async function() {
+            var btn = document.getElementById('popup-submit');
+            btn.disabled = true;
+            btn.innerHTML = `Loading <span class="loading-spinner"></span>`;
+
+            var responseData = 0;
+            var habit = {};
+
+            const response = await fetch(
+              'https://noggin.rea.gent/fortunate-ferret-3855',
+              {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: 'Bearer rg_v1_4v3bhxmd8magv3ulrla47rt70pzv2vt211lm_ngk',
+                },
+                  body: JSON.stringify({
+                    // fill variables here.
+                    "habitname": document.getElementById("userInput").value,
+                  }),
+                }
+              ).then(response => response.json())
+                .then(responseData => {
+                  habit = {"Habit": responseData["Habit Name"], 
+                          "Frequency": responseData["Frequency"], 
+                          "Preferred Time of Day": responseData["Time of Day"], 
+                          "Target": responseData["Target Goal"]};
+              });
+              
+              let habitList = JSON.parse(localStorage.getItem("habitData")) || [];
+
+              habitList.push(habit);
+              localStorage.setItem("habitData", JSON.stringify(habitList));
+              document.getElementById('popup').style.display = "none";
+              habitSaver();
+
+              btn.innerHTML = `Submit!`
+              btn.disabled = false;
+            });
+
+          function habitSaver() {
+            const headerContainer = document.getElementsByClassName("curr-habits")[0];
+            headerContainer.innerHTML = "";
+
+            const habitList = JSON.parse(localStorage.getItem("habitData")) || []; 
+                // console.log(habitList); 
+
+                if (habitList.length > 0) {
+                  habitList.forEach(habit => {
+                      const habitDiv = document.createElement('div');  
+                      habitDiv.classList.add("habit");
+
+                      let html = "";
+                      for (let key in habit) {
+                        if (habit[key]) {
+                          if (key == "Habit") {
+                            html += `<span><p><strong>${key}:</strong> ${habit[key]}</p></span>`;
+                          } else {
+                            html += `<p><strong>${key}:</strong> ${habit[key]}</p>`;
+                          }
+                        }
+                      }
+
+                      habitDiv.innerHTML = html + `<button class="Edit-Btn">Edit Habit</button>`;
+                      
+                      headerContainer.appendChild(habitDiv); 
+                      headerContainer.appendChild(document.createElement('br'));
+                      
+                  });
+                }
+          }
+            
+          window.addEventListener("DOMContentLoaded", () => {
+            const headerContainer = document.getElementsByClassName("curr-habits")[0];
+
+            const cameBack = localStorage.getItem("cameBack");
+            if (cameBack === "true") {
+              const editedHabitData = JSON.parse(localStorage.getItem("editedHabit")); 
+              if (editedHabitData) {
+                let checkingHabitList = JSON.parse(localStorage.getItem("habitData")) || [];
+                
+                checkingHabitList = checkingHabitList.map(habit => {
+                  if (habit.Habit === editedHabitData.originalName) {
+                      delete editedHabitData.originalName;
+                      return editedHabitData; 
+                  }
+                  return habit;
+                });
+                    
+                  localStorage.removeItem("edit");
+                  localStorage.removeItem("cameBack");
+                  localStorage.removeItem("editedHabit");
+                  localStorage.setItem("habitData", JSON.stringify(checkingHabitList));
+              }
+            }
+
+            habitSaver();
+          });
+
+          document.getElementById('DemoDone').addEventListener('click', function() {
+            localStorage.clear();
+            location.reload()
+          });
+
+
+          document.querySelector('.curr-habits').addEventListener('click', function(button) {
+            if (button.target && button.target.classList.contains('Edit-Btn')) {
+                const parentDiv = button.target.closest('.habit')
+                console.log(parentDiv);
+                const habitData = {};
+
+                const details = parentDiv.querySelectorAll('p');
+                details.forEach(detail => {
+                  const match = detail.innerText.match(/^(.*?):\s*(.*)$/);
+                  if (match) {
+                    habitData[match[1]] = match[2];
+                  }
+                });
+
+                habitData["originalName"] = habitData["Habit"];
+                localStorage.setItem("edit", JSON.stringify(habitData));
+                location.assign("edithabits.html");
+            }
+          });
+
+
+        </script>
+        <script src="../elements/navbar.js"></script>
+        <custom-navbar></custom-navbar>
+    </div>
+</body>
+</html>
