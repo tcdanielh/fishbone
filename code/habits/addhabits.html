@@ -19,6 +19,54 @@
 
     <link rel="stylesheet" type="text/css" href="habits.css" />
     <link rel="stylesheet" href="../main.css">
+
+    <style>
+      /* Kill horizontal scrolling everywhere */
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow-x: hidden;
+      }
+  
+      /* Make the phone container fluid and clip overflows */
+      #mobile {
+        width: 100%;
+        max-width: 400px;
+        min-height: 100vh;
+        margin: 0 auto;
+        box-sizing: border-box;
+        padding: 20px 0 60px;  /* leave room for navbar */
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+  
+      /* Ensure the inner form never overflows */
+      #Add-Habit {
+        width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
+        flex: 1 1 auto;
+      }
+  
+      /* Make the frequency buttons wrap on small screens */
+      #freq-btn {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        margin: 10px 0;
+      }
+      #freq-btn input[type="radio"],
+      #freq-btn label {
+        flex: 1 1 auto !important;
+        margin: 5px !important;
+        min-width: 0;             /* allow shrinking */
+        text-align: center;       /* center the labels */
+      }
+    </style>
 </head>
 
 <body>
