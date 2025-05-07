@@ -15,6 +15,41 @@
 
     <link rel="stylesheet" type="text/css" href="profile.css" />
     <link rel="stylesheet" href="../main.css">
+
+    <style>
+        /* prevent any horizontal overflow */
+        html, body {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          overflow-x: hidden;
+        }
+    
+        /* make the “device” fill the screen and flex-layout */
+        #mobile {
+          width: 100%;
+          max-width: 400px;
+          min-height: 100vh;           /* full viewport */
+          margin: 0 auto;
+          box-sizing: border-box;
+          padding: 20px 0 60px;        /* bottom padding for navbar */
+          display: flex;
+          flex-direction: column;
+          overflow-x: hidden;
+        }
+    
+        /* let the content scroll if it’s too tall */
+        #column-1 {
+          flex: 1 1 auto;
+          overflow-y: auto;
+        }
+    
+        /* ensure “Add Habit” button isn’t pushed off */
+        #column-1 .container:last-child {
+          flex-shrink: 0;
+          margin-top: auto;
+        }
+    </style>
 </head>
 
 <body>
